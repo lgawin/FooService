@@ -1,0 +1,51 @@
+Subject: [PATCH] add FooService, FooClient and SELinux policies
+---
+Index: car_product/build/car_system_ext.mk
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car_product/build/car_system_ext.mk b/car_product/build/car_system_ext.mk
+--- a/car_product/build/car_system_ext.mk	(revision b8fe0e1e8ffd792d9601d53d70ccf47d6edf4906)
++++ b/car_product/build/car_system_ext.mk	(date 1766007682223)
+@@ -57,3 +57,7 @@
+     ro.carrier=unknown \
+     ro.com.android.dataroaming?=true \
+     ro.hardware.type=automotive \
++
++PRODUCT_PACKAGES += FooService FooClient
++PRODUCT_SYSTEM_SERVER_JARS_EXTRA += system_ext:FooService
++SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += packages/services/Car/car_product/sepolicy/system_ext/private
+Index: car_product/sepolicy/system_ext/private/service_contexts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car_product/sepolicy/system_ext/private/service_contexts b/car_product/sepolicy/system_ext/private/service_contexts
+new file mode 100644
+--- /dev/null	(date 1766007671914)
++++ b/car_product/sepolicy/system_ext/private/service_contexts	(date 1766007671914)
+@@ -0,0 +1,1 @@
++FooService     u:object_r:FooService_service:s0
+Index: car_product/sepolicy/system_ext/private/service.te
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car_product/sepolicy/system_ext/private/service.te b/car_product/sepolicy/system_ext/private/service.te
+new file mode 100644
+--- /dev/null	(date 1766007671909)
++++ b/car_product/sepolicy/system_ext/private/service.te	(date 1766007671909)
+@@ -0,0 +1,1 @@
++type FooService_service,       system_api_service, system_server_service, service_manager_type;
+Index: car_product/sepolicy/system_ext/private/priv_app.te
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/car_product/sepolicy/system_ext/private/priv_app.te b/car_product/sepolicy/system_ext/private/priv_app.te
+new file mode 100644
+--- /dev/null	(date 1766007671899)
++++ b/car_product/sepolicy/system_ext/private/priv_app.te	(date 1766007671899)
+@@ -0,0 +1,1 @@
++allow priv_app FooService_service:service_manager find;

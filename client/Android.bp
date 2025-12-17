@@ -1,0 +1,6 @@
+java_library {
+    name: "FooClient",
+    srcs: [ "src/**/*.java" ],
+    static_libs: [ "FooService-aidl-java" ],
+    system_ext_specific: true,
+}

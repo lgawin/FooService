@@ -1,0 +1,31 @@
+java_library {
+    name: "FooService",
+    installable: true,
+    system_ext_specific: true,
+    srcs: [ "src/**/*.java" ],
+    static_libs : [ "FooService-aidl-java" ],
+    required: [ "FooServiceOverlay" ],
+    libs: [ "services" ],
+    optimize: {
+        enabled: true,
+        optimize: true,
+        shrink: true,
+        proguard_compatibility: true,
+        proguard_flags_files: [
+            "proguard.flags",
+        ],
+        ignore_library_extends_program: true,
+    },
+}
+
+aidl_interface {
+    name: "FooService-aidl",
+    srcs: [ "src/**/*.aidl" ],
+    local_include_dir: "src",
+    unstable: true,
+    backend: {
+        java: {
+            sdk_version: "current",
+        },
+    },
+}
