@@ -14,7 +14,6 @@ java_library {
         proguard_flags_files: [
             "proguard.flags",
         ],
-        ignore_library_extends_program: true,
     },
 }
 

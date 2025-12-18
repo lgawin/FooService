@@ -2,7 +2,7 @@
 
 Sample service that is "dynamically" added to SystemServer services.
 
-(tested with `adroid16-qpr2`)
+(tested with `android16-qpr2-release` and `android-14.0.0_r17`)
 
 `service` contains 
 * `IFooService.aidl` defining service interface
