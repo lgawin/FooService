@@ -25,6 +25,8 @@ android_app {
 2. instantiate and use `FooManager`
 
 ```java
+    import dev.gawluk.service.client.FooManager;
+    ...
     FooManager fooManager = FooManager.getInstance(this);
     if (fooManager != null) {
         fooManager.doWork();
